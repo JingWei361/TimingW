@@ -2,6 +2,7 @@ namespace TimingW
 {
     public partial class Form1 : Form
     {
+        private int totalKeyPressCount = 0;
         // 記錄目前的秒數，初始為 60
         private int seconds = 60;
         public Form1()
@@ -13,11 +14,9 @@ namespace TimingW
             timer1.Interval = 1000;
             // 註冊按鈕點擊事件
             btnStart.Click += btnStart_Click;
-        }
 
-        private void labelTimer_Click(object sender, EventArgs e)
-        {
-
+            this.KeyPreview = true; // 讓表單先接收鍵盤事件
+            this.KeyDown += Form1_KeyDown;
         }
 
         private void btnStart_Click(object sender, EventArgs e)
@@ -42,8 +41,22 @@ namespace TimingW
                 // 停止計時器
                 timer1.Stop();
                 // 顯示對話框
-                MessageBox.Show("時間到!");
+                MessageBox.Show($"時間到!總共走了{totalKeyPressCount}步");
             }
+        }
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            // 如果按下的是 W、A、S 或 D 鍵
+            if (e.KeyCode == Keys.W || e.KeyCode == Keys.A || e.KeyCode == Keys.S || e.KeyCode == Keys.D)
+            {
+                totalKeyPressCount++;
+                labelCount.Text = $"步數: {totalKeyPressCount}";
+            }
+        }
+
+        private void labelTimer_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

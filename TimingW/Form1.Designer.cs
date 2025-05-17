@@ -32,6 +32,7 @@
             labelTimer = new Label();
             btnStart = new Button();
             timer1 = new System.Windows.Forms.Timer(components);
+            labelCount = new Label();
             SuspendLayout();
             // 
             // labelTimer
@@ -62,11 +63,23 @@
             timer1.Interval = 1000;
             timer1.Tick += timer1_Tick;
             // 
+            // labelCount
+            // 
+            labelCount.AutoSize = true;
+            labelCount.BackColor = SystemColors.InactiveCaption;
+            labelCount.Font = new Font("Microsoft JhengHei UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            labelCount.Location = new Point(346, 9);
+            labelCount.Name = "labelCount";
+            labelCount.Size = new Size(90, 32);
+            labelCount.TabIndex = 2;
+            labelCount.Text = "步數: 0";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(9F, 19F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(labelCount);
             Controls.Add(btnStart);
             Controls.Add(labelTimer);
             Name = "Form1";
@@ -80,5 +93,6 @@
         private Label labelTimer;
         private Button btnStart;
         private System.Windows.Forms.Timer timer1;
+        private Label labelCount;
     }
 }
